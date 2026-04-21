@@ -103,7 +103,7 @@ Método	Endpoint	Descrição	Proteção
 | `DELETE` | `/api/tasks/{id}` | Remove a tarefa | **Sanctum** |
 
 
-👨‍💻 Autor
+Autor
 
 Desenvolvido por Afonso Freitas.
 
