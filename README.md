@@ -45,7 +45,7 @@ Certifica-te de que tens instalado na tua máquina:
 ### 1. Configurar o Backend (API Laravel)
 
 Abre o terminal, navega até à pasta do backend e executa:
-
+```bash
 # 1. Instalar dependências do PHP
 composer install
 
