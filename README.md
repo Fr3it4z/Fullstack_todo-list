@@ -93,13 +93,16 @@ Acede a http://localhost:4200 no teu browser. A aplicação está pronta a usar!
 
 A comunicação entre sistemas é feita em formato application/json através dos seguintes endpoints principais:
 Método	Endpoint	Descrição	Proteção
-POST	/api/register	Registo de novo utilizador	Pública
-POST	/api/login	Autenticação e geração de Token	Pública
-POST	/api/logout	Destruição do Token de sessão	Sanctum
-GET	/api/tasks	Lista as tarefas (aceita ?is_completed= e ?page=)	Sanctum
-POST	/api/tasks	Cria uma nova tarefa	Sanctum
-PUT	/api/tasks/{id}	Atualiza o estado da tarefa	Sanctum
-DELETE	/api/tasks/{id}	Remove a tarefa permanentemente	Sanctum
+| Método | Endpoint | Descrição | Proteção |
+| :--- | :--- | :--- | :--- |
+| `POST` | `/api/register` | Registo de novo utilizador | Pública |
+| `POST` | `/api/login` | Autenticação e geração de Token | Pública |
+| `POST` | `/api/logout` | Destruição do Token de sessão | **Sanctum** |
+| `GET` | `/api/tasks` | Lista as tarefas (com filtros) | **Sanctum** |
+| `PUT` | `/api/tasks/{id}` | Atualiza o estado da tarefa | **Sanctum** |
+| `DELETE` | `/api/tasks/{id}` | Remove a tarefa | **Sanctum** |
+
+
 👨‍💻 Autor
 
 Desenvolvido por Afonso Freitas.
