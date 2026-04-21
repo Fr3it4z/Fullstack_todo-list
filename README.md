@@ -36,16 +36,15 @@ Uma Single Page Application (SPA) completa e segura para gestão de tarefas. Est
 
 ## 🚀 Como Executar Localmente
 
-## Pré-requisitos
+### Pré-requisitos
 Certifica-te de que tens instalado na tua máquina:
 * [Node.js](https://nodejs.org/) (para o Angular)
 * [PHP](https://www.php.net/) e [Composer](https://getcomposer.org/) (para o Laravel)
 * Servidor de Base de Dados (MySQL / MariaDB via XAMPP, Laragon, ou nativo)
 
-## 1. Configurar o Backend (API Laravel)
+### 1. Configurar o Backend (API Laravel)
 
 Abre o terminal, navega até à pasta do backend e executa:
-
 
 # 1. Instalar dependências do PHP
 composer install
@@ -56,7 +55,11 @@ cp .env.example .env
 # 3. Gerar a chave de segurança da aplicação
 php artisan key:generate
 
+
+Configurar a Base de Dados (.env):
 Abre o ficheiro .env na pasta do backend e configura a ligação à tua base de dados:
+Code snippet
+
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -65,15 +68,18 @@ DB_USERNAME=teu_utilizador
 DB_PASSWORD=tua_senha
 
 Finalizar o Backend:
+Bash
+
 # 4. Criar as tabelas na base de dados
 php artisan migrate
 
 # 5. Iniciar o servidor local (A API ficará a correr em [http://127.0.0.1:8000](http://127.0.0.1:8000))
 php artisan serve
 
-## 2. Configurar o Frontend (Angular)
+2. Configurar o Frontend (Angular)
 
-Abre um novo terminal (mantém o backend a correr no outro), navega até à pasta do frontend e executa:
+Abre um novo terminal, navega até à pasta do frontend e executa:
+Bash
 
 # 1. Instalar as dependências do Node
 npm install
@@ -81,22 +87,19 @@ npm install
 # 2. Iniciar o servidor de desenvolvimento
 ng serve
 
-Acede a http://localhost:4200 no teu browser. A aplicação está pronta a usar!
-
-Resumo da API REST
+Acede a http://localhost:4200 no teu browser. A aplicação está pronta a usar! 🎉
+📡 Resumo da API REST
 
 A comunicação entre sistemas é feita em formato application/json através dos seguintes endpoints principais:
-
-Método,Endpoint,Descrição,Proteção
-POST,/api/register,Registo de novo utilizador,Pública
-POST,/api/login,Autenticação e geração de Token,Pública
-POST,/api/logout,Destruição do Token de sessão,Sanctum
-GET,/api/tasks,Lista as tarefas (aceita ?is_completed= e ?page=),Sanctum
-POST,/api/tasks,Cria uma nova tarefa,Sanctum
-PUT,/api/tasks/{id},Atualiza o estado da tarefa,Sanctum
-DELETE,/api/tasks/{id},Remove a tarefa permanentemente,Sanctum
-
-Autor
+Método	Endpoint	Descrição	Proteção
+POST	/api/register	Registo de novo utilizador	Pública
+POST	/api/login	Autenticação e geração de Token	Pública
+POST	/api/logout	Destruição do Token de sessão	Sanctum
+GET	/api/tasks	Lista as tarefas (aceita ?is_completed= e ?page=)	Sanctum
+POST	/api/tasks	Cria uma nova tarefa	Sanctum
+PUT	/api/tasks/{id}	Atualiza o estado da tarefa	Sanctum
+DELETE	/api/tasks/{id}	Remove a tarefa permanentemente	Sanctum
+👨‍💻 Autor
 
 Desenvolvido por Afonso Freitas.
 
