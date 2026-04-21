@@ -54,39 +54,40 @@ cp .env.example .env
 
 # 3. Gerar a chave de segurança da aplicação
 php artisan key:generate
+```
 
 
 Configurar a Base de Dados (.env):
 Abre o ficheiro .env na pasta do backend e configura a ligação à tua base de dados:
 Code snippet
-
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
 DB_DATABASE=nome_da_tua_bd
 DB_USERNAME=teu_utilizador
 DB_PASSWORD=tua_senha
-
+```
 Finalizar o Backend:
 Bash
-
+```
 # 4. Criar as tabelas na base de dados
 php artisan migrate
 
 # 5. Iniciar o servidor local (A API ficará a correr em [http://127.0.0.1:8000](http://127.0.0.1:8000))
 php artisan serve
-
+```
 2. Configurar o Frontend (Angular)
 
 Abre um novo terminal, navega até à pasta do frontend e executa:
 Bash
-
+```
 # 1. Instalar as dependências do Node
 npm install
 
 # 2. Iniciar o servidor de desenvolvimento
 ng serve
-
+```
 Acede a http://localhost:4200 no teu browser. A aplicação está pronta a usar! 🎉
 📡 Resumo da API REST
 
