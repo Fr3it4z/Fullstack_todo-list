@@ -36,13 +36,13 @@ Uma Single Page Application (SPA) completa e segura para gestão de tarefas. Est
 
 ## 🚀 Como Executar Localmente
 
-### Pré-requisitos
+## Pré-requisitos
 Certifica-te de que tens instalado na tua máquina:
 * [Node.js](https://nodejs.org/) (para o Angular)
 * [PHP](https://www.php.net/) e [Composer](https://getcomposer.org/) (para o Laravel)
 * Servidor de Base de Dados (MySQL / MariaDB via XAMPP, Laragon, ou nativo)
 
-### 1. Configurar o Backend (API Laravel)
+## 1. Configurar o Backend (API Laravel)
 
 Abre o terminal, navega até à pasta do backend e executa:
 
@@ -71,7 +71,7 @@ php artisan migrate
 # 5. Iniciar o servidor local (A API ficará a correr em [http://127.0.0.1:8000](http://127.0.0.1:8000))
 php artisan serve
 
-### 2. Configurar o Frontend (Angular)
+## 2. Configurar o Frontend (Angular)
 
 Abre um novo terminal (mantém o backend a correr no outro), navega até à pasta do frontend e executa:
 
