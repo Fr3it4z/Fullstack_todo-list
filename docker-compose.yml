@@ -1,0 +1,65 @@
+services:
+
+  # ==========================================
+  # 1. BASE DE DADOS (MariaDB)
+  # ==========================================
+  db:
+    image: mariadb:10.11
+    container_name: task_manager_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: task_manager
+      MYSQL_USER: afonso
+      MYSQL_PASSWORD: secretpassword
+      MYSQL_ROOT_PASSWORD: rootsecret
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - app_network
+
+  # ==========================================
+  # 2. BACKEND (Laravel / API)
+  # ==========================================
+  backend:
+    image: laravel-app:latest    # A imagem que tu criaste!
+    container_name: task_manager_backend
+    restart: unless-stopped
+    ports:
+      - "8000:80"                # Mapeia a porta 8000 do teu PC para a 80 do Apache
+    environment:
+      - DB_CONNECTION=mysql
+      - DB_HOST=db               # Magia: Ele liga-se ao nome do serviço acima, não ao localhost!
+      - DB_PORT=3306
+      - DB_DATABASE=task_manager
+      - DB_USERNAME=afonso
+      - DB_PASSWORD=secretpassword
+    depends_on:
+      - db                       # O Laravel só arranca depois da BD estar pronta
+    networks:
+      - app_network
+
+  # ==========================================
+  # 3. FRONTEND (Angular / Interface)
+  # ==========================================
+  frontend:
+    image: angular-app:latest    # A tua imagem super leve com Nginx!
+    container_name: task_manager_frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80"                # Mapeia a porta 4200 do teu PC para o Nginx
+    depends_on:
+      - backend
+    networks:
+      - app_network
+
+# ==========================================
+# CONFIGURAÇÕES DA INFRAESTRUTURA
+# ==========================================
+volumes:
+  db_data:
+
+networks:
+  app_network:
+    driver: bridge
