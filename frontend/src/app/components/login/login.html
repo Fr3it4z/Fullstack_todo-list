@@ -1,0 +1,25 @@
+<div style="max-width: 400px; margin: 50px auto; font-family: sans-serif;">
+  <h2>Entrar na Todo List</h2>
+
+  <form [formGroup]="loginForm" (ngSubmit)="fazerLogin()" style="display: flex; flex-direction: column; gap: 15px;">
+    
+    <div>
+      <label>Email:</label><br>
+      <input type="email" formControlName="email" placeholder="O teu email" style="width: 100%; padding: 8px;">
+    </div>
+
+    <div>
+      <label>Password:</label><br>
+      <input type="password" formControlName="password" placeholder="A tua password" style="width: 100%; padding: 8px;">
+    </div>
+
+    <button type="submit" [disabled]="loginForm.invalid" style="padding: 10px; cursor: pointer;">
+      Entrar
+    </button>
+
+  </form>
+  
+  <p style="text-align: center; margin-top: 20px;">
+    Ainda não tens conta? <a href="/register">Regista-te aqui</a>
+  </p>
+</div>

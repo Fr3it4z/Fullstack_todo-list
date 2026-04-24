@@ -1,0 +1,95 @@
+<div style="max-width: 600px; margin: 50px auto; font-family: sans-serif;">
+  
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <h2>As Minhas Tarefas</h2>
+    <button (click)="sair()" style="padding: 5px 10px; cursor: pointer; background: #ff4d4d; color: white; border: none;">Sair</button>
+  </div>
+
+  <hr>
+
+  <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+    <input type="text" [(ngModel)]="novaTarefa" placeholder="O que tens para fazer hoje?" style="flex: 1; padding: 10px;">
+    
+    <button (click)="adicionarTarefa()" style="padding: 10px 20px; background: #4CAF50; color: white; border: none; cursor: pointer;">
+      Adicionar
+    </button>
+  </div>
+
+  <div style="display: flex; gap: 10px; margin-bottom: 20px; justify-content: center;">
+    <button (click)="mudarFiltro('todas')" 
+            [style.background]="filtroAtual === 'todas' ? '#333' : '#eee'"
+            [style.color]="filtroAtual === 'todas' ? 'white' : 'black'"
+            style="padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer;">
+      Todas
+    </button>
+    
+    <button (click)="mudarFiltro('pendentes')" 
+            [style.background]="filtroAtual === 'pendentes' ? '#ffa500' : '#eee'"
+            [style.color]="filtroAtual === 'pendentes' ? 'white' : 'black'"
+            style="padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer;">
+      Pendentes ⏳
+    </button>
+    
+    <button (click)="mudarFiltro('concluidas')" 
+            [style.background]="filtroAtual === 'concluidas' ? '#28a745' : '#eee'"
+            [style.color]="filtroAtual === 'concluidas' ? 'white' : 'black'"
+            style="padding: 8px 15px; border: none; border-radius: 20px; cursor: pointer;">
+      Concluídas ✅
+    </button>
+  </div>
+
+  @if (tarefas.length === 0) {
+    <p style="text-align: center; color: #888;">
+      Não tens tarefas nesta lista.
+    </p>
+  }
+
+  @for (tarefa of tarefas; track tarefa.id) {
+    <div style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; align-items: center;">
+      
+      <div>
+        <h3 style="margin: 0;" [style.text-decoration]="tarefa.is_completed ? 'line-through' : 'none'">
+          {{ tarefa.title }}
+        </h3>
+        
+        <p style="margin: 5px 0 0 0; font-size: 14px;">
+          Estado: 
+          @if (tarefa.is_completed) {
+            <span style="color: green; font-weight: bold;">Concluída ✅</span>
+          } @else {
+            <span style="color: orange; font-weight: bold;">Pendente ⏳</span>
+          }
+        </p>
+      </div>
+
+      <div style="display: flex; gap: 10px;">
+        <button (click)="alternarEstado(tarefa)" style="padding: 8px 12px; cursor: pointer; border: none; border-radius: 4px; background: #007bff; color: white;">
+          @if (tarefa.is_completed) { Desfazer } @else { Concluir }
+        </button>
+
+        <button (click)="apagarTarefa(tarefa.id)" style="padding: 8px 12px; cursor: pointer; border: none; border-radius: 4px; background: #dc3545; color: white;">
+          Apagar 🗑️
+        </button>
+      </div>
+
+    </div>
+  }
+
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #ccc;">
+    
+    <button (click)="mudarPagina(linksPaginacao?.prev)" 
+            [disabled]="!linksPaginacao?.prev"
+            [style.background]="linksPaginacao?.prev ? '#007bff' : '#ccc'"
+            style="padding: 10px 15px; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      ⬅️ Página Anterior
+    </button>
+
+    <button (click)="mudarPagina(linksPaginacao?.next)" 
+            [disabled]="!linksPaginacao?.next"
+            [style.background]="linksPaginacao?.next ? '#007bff' : '#ccc'"
+            style="padding: 10px 15px; color: white; border: none; border-radius: 5px; cursor: pointer;">
+      Próxima Página ➡️
+    </button>
+    
+  </div>
+</div>
